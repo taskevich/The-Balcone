@@ -176,3 +176,7 @@ button, a {
 .selected_photo {
     border: 2px solid green;
 }
+
+.hided_image {
+    border: 2px solid red;
+}

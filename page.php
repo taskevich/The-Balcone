@@ -10,7 +10,7 @@
     $stmt->execute();
     $result_good = $stmt->fetchAll();
 
-    $sql = "select * from photo_table where goodId = :goodId";
+    $sql = "select * from photo_table where goodId = :goodId and status != 0";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(":goodId", $_REQUEST["postId"]);
     $stmt->execute();

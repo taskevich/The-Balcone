@@ -47,6 +47,6 @@
         } catch (PDOException $e) {
             echo "\nError: ".$e->getMessage()."\n";
         }
-        header("Location: ../index.php");
+        header("Location: ./panel/panel.php");
         exit;
     }

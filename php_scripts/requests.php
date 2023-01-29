@@ -10,7 +10,7 @@
         $good_res = $stmt->fetch();
 
 
-        $sql = "select * from photo_table where goodId = :goodId;";
+        $sql = "select * from photo_table where goodId = :goodId";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(":goodId", $_GET["goodId"]);
         $stmt->execute();
@@ -19,4 +19,22 @@
         $acc_package = array("good" => $good_res, "photo" => $photo_res);
         $output[] = $acc_package;
         print(json_encode($output));
+    }
+
+    if($_POST["type"] == "viewImage") {
+        for ($i = 0; $i < count($_POST["imageIds"]); ++$i) {
+            $sql = "update photo_table set status = 1 where id = :id;";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(":id", $_POST["imageIds"][$i]);
+            $stmt->execute();
+        }
+    }
+
+    if ($_POST["type"] == "hideImage") {
+        for ($i = 0; $i < count($_POST["imageIds"]); ++$i) {
+            $sql = "update photo_table set status = 0 where id = :id;";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(":id", $_POST["imageIds"][$i]);
+            $stmt->execute();
+        }
     }

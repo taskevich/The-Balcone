@@ -56,10 +56,10 @@
                                 <label for="upImage">Изображение</label>
                                 <input type="file" id="upImage" name="upImage[]" multiple >
 
-                                <div id="photos">
+                                <div id="photos"></div>
 
-                                </div>
-
+                                <button id="hideImage" name="hideImage">Скрыть изображение</button>
+                                <button id="viewImage" name="viewImage">Показать изображение</button>
                                 <button id="doneBtn" type="nan" type="submit" name="upload_process"></button>
                             </form>
                         </div>
@@ -71,7 +71,7 @@
                     <img src="<?php echo $result_photo[$key]["path_to_photo"]; ?>" alt="img">
                     <h1><?php echo $value["title"];?></h1>
                     <p><?php echo $value["description"];?></p>
-                    <a id="myBtn" edit=1 goodId="<?php echo $value["id"];?>">Редактировать пост</a>
+                    <a id="myBtn" edit="1" status="<?php echo $result_photo[$key]["status"]; ?>" goodId="<?php echo $value["id"];?>">Редактировать пост</a>
                 </div>
             <?php } ?>
         </div>
