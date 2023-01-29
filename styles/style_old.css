@@ -1,0 +1,198 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    width: 100%;
+
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(26, 26, 26, 0.7)50.03%, rgba(70, 70, 70, 0.7)100%);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    position: absolute;
+    padding: 40px 0px 40px 0px;
+}
+.header_det {
+    width: 100%;
+
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(26, 26, 26, 0.7)50.03%, rgba(70, 70, 70, 0.7)100%);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+
+    padding: 40px 0px 40px 0px;
+}
+
+.icon img {
+    transform: scale(-1, 1);
+    margin-right: 40px;
+    width: 25px;
+    height: 25px;
+}
+.logo {
+    color: #fff;
+    font-weight: 800;
+    font-size: 48px;
+
+}
+.cards {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(auto-fit, 1fr);
+    gap: 26px 19px;
+
+}
+.card{
+
+    width: 100%;
+}
+
+.card img {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    object-fit: cover;
+
+}
+.Cards img {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    object-fit: cover;
+    height: 80vh;
+}
+
+.footer {
+    background: linear-gradient(180deg, #464646 0%, #111110 100%);
+    text-align: center;
+    padding: 120px 0 0 0;
+    margin-top: 30px;
+    position: relative;
+    /* overflow: hidden; */
+}
+.footer::before {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    width: 50px;
+    height: 50px;
+    top: -26px;
+    left: 48.6%;
+    transform: rotate(45deg);
+
+}
+.footer h1, p {
+    color: #fff;
+}
+.footer h1{
+    font-weight: 900;
+    font-size: 48px;
+    margin-bottom: 45px;
+}
+.footer .text {
+    font-weight: 500;
+    font-size: 32px;
+    margin-bottom: 60px;
+}
+.footer button{
+    background-color: #003edd;
+    border: 0;
+    padding: 30px 175px 30px 175px;
+    border-radius: 100px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 36px;
+    margin-bottom: 100px;
+}
+.footer_contact{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 40px 40px 40px;
+}
+.footer_contact p {
+    font-weight: 800;
+    font-size: 40px;
+}
+.main {
+    width: 100%;
+
+}
+.Cards {
+    width: 100%;
+
+    margin-bottom: 20px;
+}
+.text_main p {
+    color: #000000;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 39px;
+
+
+}
+.text_main h1 {
+    color: #000000;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 59px;
+    font-style: normal;
+
+    margin-bottom: 20px;
+}
+.text_main {
+    padding: 20px 40px 40px 40px;
+}
+.main_cards {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(auto-fit, 1fr);
+    gap: 26px 19px;
+}
+
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.shadow {
+    display: inline-block;
+    position: relative;
+    -moz-box-shadow: rgba(0, 0, 0, 0.82) 3px 3px 10px inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.82) 3px 3px 10px inset;
+    box-shadow: rgba(0, 0, 0, 0.82) 3px 3px 10px inset;
+    -webkit-transition: box-shadow 0.2s ease-in;
+    -moz-transition: box-shadow 0.2s ease-in;
+    transition: box-shadow 0.2s ease-in;
+}
+.shadow:hover {
+    -moz-box-shadow: rgba(0, 0, 0, 0.82) 5px 5px 100px inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.82) 5px 5px 100px inset;
+    box-shadow: rgba(0, 0, 0, 0.82) 5px 5px 100px inset;
+}
+.shadow img {
+    max-width: 100%;
+    position: relative;
+    z-index: -1;
+    display: block;
+}

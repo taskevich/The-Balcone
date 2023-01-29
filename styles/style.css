@@ -1,0 +1,159 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+.header {
+    width: 100%;
+    
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(26, 26, 26, 0.7)50.03%, rgba(70, 70, 70, 0.7)100%);
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    position: absolute;
+    padding: 40px 0px 40px 0px;
+}
+
+.icon img {
+    transform: scale(-1, 1);
+    margin-right: 40px;
+    width: 25px;
+    height: 25px;
+    
+    
+}
+.logo {
+    color: #fff;
+    font-weight: 800;
+    font-size: 48px;
+    
+}
+.cards {
+    display: grid;
+    height: 100vh;
+  grid-auto-columns: 1fr; 
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+  gap: 20px 20px; 
+  grid-template-areas: 
+    "fg fg fl fl"
+    "fg fg fl fl"
+    "fg fg fc fc"
+    "cl cl fc fc"
+    "cl cl fc fc"; 
+}
+.card{
+    background-color: #1A1a1a;
+
+    
+    
+}
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+.fg {
+    background-color: #ffee00;
+    grid-area: fg;
+}
+.fl {
+background-color: aqua;
+grid-area: fl;
+}
+.fc {
+background-color: blue;
+grid-area: fc;
+}
+.cl {
+background-color: brown;
+grid-area: cl;
+
+}
+.footer {
+    background: linear-gradient(180deg, #464646 0%, #111110 100%);
+    text-align: center;
+    padding: 120px 0 0 0;
+    margin-top: 30px;
+    position: relative;
+    overflow: hidden;
+}
+.footer::before {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    width: 100px;
+    height: 100px;
+    top: -50px;
+    left: 47.4%;
+    transform: rotate(45deg);
+    
+}
+.footer h1, p {
+    color: #fff;
+}
+.footer h1{
+    font-weight: 900;
+    font-size: 48px;
+    margin-bottom: 45px;
+}
+.footer .text {
+    font-weight: 500;
+    font-size: 32px;
+    margin-bottom: 60px;
+}
+.footer button{
+    background-color: #003edd;
+    border: 0;
+    padding: 30px 175px 30px 175px;
+    border-radius: 100px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 36px;
+    margin-bottom: 100px;
+}
+.footer_contact{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 40px 40px 40px;
+}
+.footer_contact p {
+    font-weight: 800;
+    font-size: 40px;
+}
+.main {
+    width: 100%;
+    height: 100%;
+}
+.Cards {
+    width: 100%;
+    height: 80vh;
+    margin-bottom: 20px;
+}
+.text_main p {
+    color: #000000;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 39px;
+
+
+}
+.text_main h1 {
+    color: #000000;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 59px;
+    font-style: normal;
+
+    margin-bottom: 20px;
+}
+.text_main {
+ padding: 20px 40px 40px 40px;   
+}
