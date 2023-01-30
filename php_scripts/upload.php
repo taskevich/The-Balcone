@@ -10,11 +10,11 @@
 
         try {
             // insert base
-            $sql = "insert into good_table (title, description, slug_url) values (:title, :description, :slug_url);";
+            $sql = "insert into good_table (title, description) values (:title, :description);";
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(":title", $_POST["title"]);
             $stmt->bindValue(":description", $_POST["description"]);
-            $stmt->bindValue(":slug_url", str_replace(" ", "-", $_POST["title"]));
+            //$stmt->bindValue(":slug_url", str_replace(" ", "-", $_POST["title"]));
             $complete = $stmt->execute();
 
             if ($complete)
@@ -25,7 +25,6 @@
                 $stmt->bindValue(":title", $title);
                 $stmt->execute();
                 $complete = $stmt->fetch(PDO::FETCH_LAZY);
-
                 if ($complete)
                 {
                     foreach ($_FILES["upImage"]["error"] as $key => $error)
@@ -38,8 +37,7 @@
                         $stmt = $conn->prepare($sql);
                         $stmt->bindValue(":goodId", $complete["id"]);
                         $stmt->bindValue(":path_to_photo", $target_file);
-
-                        $stmt->execute([$complete["id"], $target_file]);
+                        $stmt->execute();
                     }
                 }
             }
@@ -47,6 +45,9 @@
         } catch (PDOException $e) {
             echo "\nError: ".$e->getMessage()."\n";
         }
-        header("Location: ./panel/panel.php");
+        header("Location: ../panel/panel.php");
+        exit;
+    } else {
+        header("Location: ../panel/panel.php");
         exit;
     }

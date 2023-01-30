@@ -23,7 +23,7 @@
                         move_uploaded_file($_FILES["upImage"]["tmp_name"][$key], $target_file);
 
                         // insert path
-                        $sql = "insert into photo_table (goodId, path_to_photo) values (?, ?);";
+                        $sql = "insert into photo_table (goodId, path_to_photo) values (:goodId, :path_to_photo);";
                         $stmt = $conn->prepare($sql);
                         $stmt->bindValue(":goodId", $id);
                         $stmt->bindValue(":path_to_photo", $target_file);

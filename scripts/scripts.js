@@ -25,12 +25,18 @@ function modal_badyaga()
             if (parseInt(btn.getAttribute("edit")) === 0) {
                 doneBtn.innerText = "Загрузить";
                 doneBtn.setAttribute("type", "upload");
+                doneBtn.setAttribute("name", "upload_process");
                 actionForm.setAttribute("action", "../php_scripts/upload.php");
+                viewImage.style.display = "none";
+                hideImage.style.display = "none";
             } else {
                 doneBtn.setAttribute("type", "edit");
                 doneBtn.setAttribute("name", "edit_process");
-                doneBtn.innerText = "Сохранить";
+                doneBtn.setAttribute("status", `${status}`);
                 actionForm.setAttribute("action", "../panel/edit.php?id=" + goodId);
+                doneBtn.innerText = "Сохранить";
+                viewImage.style.display = "block";
+                hideImage.style.display = "block";
 
                 let res = await request_returns("GET", goodId);
                 title.value = res[0]["good"]["title"];
@@ -45,7 +51,7 @@ function modal_badyaga()
                     img.setAttribute("status", res[0]["photo"][key]["status"]);
                     img.setAttribute("imageId", res[0]["photo"][key]["id"]);
 
-                    if (res[0]["photo"][key]["status"] === "0") {
+                    if (res[0]["photo"][key]["status"] === 0) {
                         img.classList.add("hided_image");
                     }
 
@@ -85,7 +91,7 @@ async function onclick_image(divPhoto) {
         images[i].addEventListener("click", (e) => {
             let status = images[i].getAttribute("status");
             if (!e.target.classList.contains("selected_photo")) {
-                if (e.target.classList.contains("hided_image")) {
+                if (e.target.classList.contains("hided_image") && status === "0") {
                     e.target.classList.remove("hided_image");
                 }
 
@@ -99,7 +105,6 @@ async function onclick_image(divPhoto) {
                 e.target.classList.remove("selected_photo");
                 onEditVisibility.pop();
             }
-            //console.log(onEditVisibility);
         });
     }
 }
