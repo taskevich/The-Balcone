@@ -31,7 +31,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <title>THE БАЛКОНЫ</title>
 </head>
-gfdgfd
     <body>
         <div class="header">
             <div class="ghost"></div>
