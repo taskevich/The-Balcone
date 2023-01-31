@@ -7,13 +7,8 @@
 
     if ($conn != null)
     {
-        $sql_goods = "select * from good_table;";
+        $sql_goods = "select * from good_table left join photo_table pt on good_table.id = pt.goodId where is_visible = 1 group by goodId;";
         $stmt = $conn->prepare($sql_goods);
-        $stmt->execute();
-        $res_goods = $stmt->fetchAll();
-
-        $sql_photos = "select * from photo_table group by goodId;";
-        $stmt = $conn->prepare($sql_photos);
         $stmt->execute();
         $res_goods = $stmt->fetchAll();
     }
@@ -53,6 +48,5 @@
                 <div class="icon"><img src="/call.png" alt="" srcset=""></div>
             </div>
         </div>
-
     </body>
 </html>

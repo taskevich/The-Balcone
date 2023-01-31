@@ -4,28 +4,46 @@
     padding: 0;
     text-decoration: none;
 }
+body {
+    background-color: #2B3648;
+}
 
-textarea {
+textarea{
     width: 200px;
     height: 150px;
     resize: none;
+    background-color: #212936;
+    border: 1px solid #313C4E;
+    color: #8997B1;
+}
+input {
+    background-color: #212936;
+    border: 1px solid #313C4E;
+    color: #8997B1;
 }
 
 button, a {
     padding: 20px;
     display: inline-block;
     text-decoration: none;
-    background-color: #414b52;
+    background-color: #212936;
     margin: 10px;
-    color: #fff;
-    border: 1px solid #414b52;
+    color: #8997B1;
+    border: 1px solid #313C4E;
     border-radius: 10px;
     cursor: pointer;
 }
-
+button:active {
+    animation: click 2s;
+}
+input::file-selector-button{
+    color: #8997B1;
+    background-color: #212936;
+    border: 1px solid #313C4E;
+}
 .header {
     width: 100%;
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(26, 26, 26, 0.7)50.03%, rgba(70, 70, 70, 0.7)100%);
+    background: #212936;
     display: flex;
     text-align: center;
     align-items: center;
@@ -42,7 +60,7 @@ button, a {
 }
 
 .posts {
-    display: flex;
+    display: block;
     margin: 50px auto;
     width: 81%;
     height: 100%;
@@ -50,7 +68,7 @@ button, a {
 
 .post {
     display: flex;
-    border: 2px solid black;
+    border: 2px solid #313C4E;
 
     border-radius: 10px;
     margin: 10px auto;
@@ -62,11 +80,8 @@ button, a {
 
     height: 200px;
     width: 80%;
-}
-
-.post button {
-    width: 600px;
-    height: 30px;
+    background-color: #212936;
+    color: #AFBDD1;
 }
 
 .post img {
@@ -95,7 +110,7 @@ button, a {
 
 .modal-content {
     position: relative;
-    background-color: #ffffff;
+    background-color: #212936;
     margin: auto;
     padding: 0;
     width: 50%;
@@ -115,6 +130,18 @@ button, a {
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
+@keyframes click {
+    0%{
+        scale: 100%;
+    }
+    50%{
+        scale: 50%;
+    }
+    100% {
+        scale: 100%;
+    }
+}
+
 
 
 .close {
@@ -132,7 +159,7 @@ button, a {
 }
 
 .modal-header {
-    padding: 2px 16px;
+    padding-right: 16px;
     background-color: #414b52;
     color: white;
 }
@@ -140,6 +167,7 @@ button, a {
 .modal-body {
     display: block;
     padding: 20px 20px;
+    color: #8997B1;
 }
 
 .modal-body form {
@@ -173,10 +201,22 @@ button, a {
     justify-content: space-between;
 }
 
+
+
 .selected_photo {
     border: 2px solid green;
 }
 
 .hided_image {
     border: 2px solid red;
+}
+
+.error {
+    display: block;
+    color: red;
+}
+
+#myBtn {
+    display: block;
+    width: 125px;
 }

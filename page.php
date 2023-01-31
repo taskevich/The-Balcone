@@ -4,17 +4,11 @@
 
     $is_auth = isset($_SESSION["id"]) ? 1 : 0;
 
-    $sql = "select * from good_table where id = :goodId";
+    $sql = "select * from good_table left join photo_table pt on good_table.id = pt.goodId where goodId = :goodId and status = 1;";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(":goodId", $_REQUEST["postId"]);
     $stmt->execute();
     $result_good = $stmt->fetchAll();
-
-    $sql = "select * from photo_table where goodId = :goodId and status != 0";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindValue(":goodId", $_REQUEST["postId"]);
-    $stmt->execute();
-    $result_photo = $stmt->fetchAll();
 ?>
 
 <!doctype html>
@@ -42,9 +36,10 @@
                 <p><?php echo $result_good[0]["description"]; ?></p>
             </div>
             <div class="main_cards">
-                <?php foreach ($result_photo as $key => $value) { ?>
+                <?php foreach ($result_good as $key => $value) { ?>
                 <div class="card Cards">
-                        <img src="<?php echo $result_photo[$key]["path_to_photo"]; ?>" alt="">
+
+                    <img src="<?php echo $value["path_to_photo"]; ?>" alt="">
                 </div>
                 <?php } ?>
             </div>
@@ -60,6 +55,5 @@
                 <div class="icon"><img src="/call.png" alt="" srcset=""></div>
             </div>
         </div>
-
     </body>
 </html>

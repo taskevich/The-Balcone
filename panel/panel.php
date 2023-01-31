@@ -10,15 +10,15 @@
     require_once("../php_scripts/config.php");
     require_once("../php_scripts/requests.php");
 
-    $sql = "select * from good_table;";
-    $stmt = $conn->prepare($sql);
+    $sql_goods = "select * from good_table left join photo_table pt on good_table.id = pt.goodId group by goodId;";
+    $stmt = $conn->prepare($sql_goods);
     $stmt->execute();
     $result_good = $stmt->fetchAll();
 
-    $sql = "select * from photo_table;";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $result_photo = $stmt->fetchAll();
+//    $sql = "select * from photo_table group by goodId;";
+//    $stmt = $conn->prepare($sql);
+//    $stmt->execute();
+//    $result_photo = $stmt->fetchAll();
 ?>
 
 <!doctype html>
@@ -39,41 +39,51 @@
         </div>
 
         <div class="posts">
-            <a edit=0 id="myBtn">Добавить пост</a>
+            <a id="myBtn">Добавить пост</a>
+            <?php if (isset($_GET["error"])) { ?>
+                <div class="error"><?php echo $_GET["error"];?></div>
+            <?php } ?>
             <div id="myModal" class="modal">
                 <div class="modal-content">
-                        <div class="modal-header">
-                            <span class="close">&times;</span>
-                        </div>
-                        <div class="modal-body">
-                            <form id="actionForm" method="POST" enctype="multipart/form-data">
-                                <label for="title">Заголовок</label>
-                                <input type="text" name="title" id="title" value="">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="actionForm" method="POST" action="./upload.php" enctype="multipart/form-data">
+                            <label for="title">Заголовок</label>
+                            <input type="text" name="title" id="title" value="">
 
-                                <label for="description">Описание</label>
-                                <textarea type="text" name="description" id="description"></textarea>
+                            <label for="description">Описание</label>
+                            <textarea name="description" id="description"></textarea>
 
-                                <label for="upImage">Изображение</label>
-                                <input type="file" id="upImage" name="upImage[]" multiple >
+                            <label for="upImage">Изображение</label>
+                            <input type="file" id="upImage" name="upImage[]" multiple >
 
-                                <div id="photos"></div>
+                            <div id="photos"></div>
 
-                                <button id="hideImage" name="hideImage">Скрыть изображение</button>
-                                <button id="viewImage" name="viewImage">Показать изображение</button>
-                                <button id="doneBtn" type="nan" type="submit" name="upload_process"></button>
-                            </form>
-                        </div>
+                            <button id="doneBtn" type="submit" name="upload_process">Добавить</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-            <?php foreach ($result_good as $key => $value) { ?>
-                <div class="post">
-                    <img src="<?php echo $result_photo[$key]["path_to_photo"]; ?>" alt="img">
-                    <h1><?php echo $value["title"];?></h1>
-                    <p><?php echo $value["description"];?></p>
-                    <a id="myBtn" edit="1" status="<?php echo $result_photo[$key]["status"]; ?>" goodId="<?php echo $value["id"];?>">Редактировать пост</a>
-                </div>
-            <?php } ?>
+
+        <?php foreach ($result_good as $k => $v) { ?>
+            <div class="post">
+                <img
+                        src="<?php echo $v["path_to_photo"]; ?>"
+                        alt="img">
+                <h1><?php echo $v["title"];?></h1>
+                <p><?php echo $v["description"];?></p>
+                <?php if ($v["is_visible"]) { ?>
+                    <button id="hidePost" goodId="<?php echo $v["goodId"];?>">Скрыть пост</button>
+                <?php } else { ?>
+                    <button id="showPost" goodId="<?php echo $v["goodId"];?>">Показать пост</button>
+                <?php } ?>
+                <a href="./detail.php?id=<?php echo $v["goodId"];?>">Редактировать пост</a>
+            </div>
+        <?php } ?>
+
         </div>
 
         <script src="../scripts/jquery-3.6.3.js"></script>

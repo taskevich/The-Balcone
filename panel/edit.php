@@ -1,6 +1,9 @@
 <?php
     require_once("../php_scripts/config.php");
 
+    $target_dir = "../resources/";
+
+
     if(isset($_POST["edit_process"])) {
         $id = $_GET["id"];
         $title = htmlspecialchars($_POST["title"]);
@@ -15,18 +18,17 @@
                 $stmt->bindValue(":id", $id);
                 $stmt->execute();
 
-                if (!empty($_FILES["upImage"]["tmp_name"]) || !file_exists($_FILES['upImage']['tmp_name'])) {
-                    foreach ($_FILES["upImage"]["error"] as $key => $error)
-                    {
-                        $target_dir = "../resources/";
-                        $target_file = $target_dir . basename($_FILES["upImage"]["name"][$key]);
-                        move_uploaded_file($_FILES["upImage"]["tmp_name"][$key], $target_file);
+                var_dump($_FILES);
 
-                        // insert path
-                        $sql = "insert into photo_table (goodId, path_to_photo) values (?, ?);";
+                $countfiles = count($_FILES['upImage']['name']);
+                for ($i = 0; $i < $countfiles; $i++) {
+                    $filename = $_FILES['upImage']['name'][$i];
+                    $dst = $target_dir.$filename;
+                    if (move_uploaded_file($_FILES['upImage']['tmp_name'][$i], $dst)) {
+                        $sql = "insert into photo_table (goodId, path_to_photo) values (:goodId, :path_to_photo);";
                         $stmt = $conn->prepare($sql);
                         $stmt->bindValue(":goodId", $id);
-                        $stmt->bindValue(":path_to_photo", $target_file);
+                        $stmt->bindValue(":path_to_photo", $dst);
                         $stmt->execute();
                     }
                 }
@@ -35,7 +37,7 @@
             }
         }
     }
-    header("Location: ./panel.php");
+    header("Location: ./detail.php?id=".$id);
     exit;
 
 

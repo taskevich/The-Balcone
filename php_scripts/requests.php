@@ -21,7 +21,7 @@
         print(json_encode($output));
     }
 
-    if($_POST["type"] == "viewImage") {
+    if($_POST["type"] == "showImage") {
         for ($i = 0; $i < count($_POST["imageIds"]); ++$i) {
             $sql = "update photo_table set status = 1 where id = :id;";
             $stmt = $conn->prepare($sql);
@@ -37,4 +37,18 @@
             $stmt->bindValue(":id", $_POST["imageIds"][$i]);
             $stmt->execute();
         }
+    }
+
+    if ($_POST["type"] == "hidePost") {
+        $sql = "update good_table set is_visible = 0 where id = :id;";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(":id", $_POST["goodId"]);
+        $stmt->execute();
+    }
+
+    if ($_POST["type"] == "showPost") {
+        $sql = "update good_table set is_visible = 1 where id = :id;";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(":id", $_POST["goodId"]);
+        $stmt->execute();
     }

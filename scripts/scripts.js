@@ -1,115 +1,44 @@
 let modal = document.getElementById('myModal');
 let span = document.getElementsByClassName("close")[0];
-let doneBtn = document.getElementById("doneBtn");
-let actionForm = document.getElementById("actionForm");
-let divPhoto = document.getElementById("photos");
 let btns = document.querySelectorAll("#myBtn");
-let title = document.getElementById("title");
-let description = document.getElementById("description");
-let viewImage = document.getElementById("viewImage");
-let hideImage = document.getElementById("hideImage");
+let hidePost = document.querySelectorAll("#hidePost");
+let showPost = document.querySelectorAll("#showPost");
 
-let onEditVisibility = [];
-let goodId = null;
 let status = null;
 
-change_visibility()
-modal_badyaga()
-function modal_badyaga()
-{
+open_modal();
+function open_modal() {
     for (const btn of btns) {
-        btn.addEventListener("click", async (e) => {
-            goodId = parseInt(btn.getAttribute("goodId"));
-            status = parseInt(btn.getAttribute("status"));
-
-            if (parseInt(btn.getAttribute("edit")) === 0) {
-                doneBtn.innerText = "Загрузить";
-                doneBtn.setAttribute("type", "upload");
-                actionForm.setAttribute("action", "../php_scripts/upload.php");
-            } else {
-                doneBtn.setAttribute("type", "edit");
-                doneBtn.setAttribute("name", "edit_process");
-                doneBtn.innerText = "Сохранить";
-                actionForm.setAttribute("action", "../panel/edit.php?id=" + goodId);
-
-                let res = await request_returns("GET", goodId);
-                title.value = res[0]["good"]["title"];
-                description.innerText = res[0]["good"]["description"];
-                for (const key in res[0]["photo"])
-                {
-                    const img = document.createElement("img");
-                    img.setAttribute("src", res[0]["photo"][key]["path_to_photo"]);
-                    img.setAttribute("width", "100");
-                    img.setAttribute("height", "100");
-                    img.setAttribute("class", "");
-                    img.setAttribute("status", res[0]["photo"][key]["status"]);
-                    img.setAttribute("imageId", res[0]["photo"][key]["id"]);
-
-                    if (res[0]["photo"][key]["status"] === "0") {
-                        img.classList.add("hided_image");
-                    }
-
-                    divPhoto.appendChild(img);
-                }
-                if (divPhoto.hasChildNodes()) {
-                    await onclick_image(divPhoto);
-                }
-            }
+        btn.addEventListener("click", (e) => {
             modal.style.display = "block";
         });
     }
 }
 
-function change_visibility() {
-    let prepared = []
-    hideImage.addEventListener("click", (e) => {
-
-        if (onEditVisibility) {
-            e.preventDefault();
-            post_request(e, "../php_scripts/requests.php", "hideImage", onEditVisibility);
-        }
+for (const post of hidePost) {
+    post.addEventListener("click", (e) => {
+        post_request(e, "../php_scripts/requests.php", { type: post.getAttribute("id"),
+            goodId: parseInt(post.getAttribute("goodId")) });
     });
-
-    viewImage.addEventListener("click", (e) => {
-        console.log(onEditVisibility);
-        if (onEditVisibility) {
-            e.preventDefault();
-            post_request(e, "../php_scripts/requests.php", "viewImage", onEditVisibility);
-        }
-    })
 }
 
-async function onclick_image(divPhoto) {
-    let images = divPhoto.querySelectorAll("img");
-    for (let i = 0; i < images.length; ++i) {
-        images[i].addEventListener("click", (e) => {
-            let status = images[i].getAttribute("status");
-            if (!e.target.classList.contains("selected_photo")) {
-                if (e.target.classList.contains("hided_image")) {
-                    e.target.classList.remove("hided_image");
-                }
-
-                e.target.classList.add("selected_photo");
-                onEditVisibility.push(parseInt(images[i].getAttribute("imageId")));
-            } else {
-                if (!e.target.classList.contains("hided_image") && status === "0") {
-                    e.target.classList.add("hided_image");
-                }
-
-                e.target.classList.remove("selected_photo");
-                onEditVisibility.pop();
-            }
-            //console.log(onEditVisibility);
-        });
-    }
+for (const post of showPost) {
+    post.addEventListener("click", (e) => {
+        post_request(e, "../php_scripts/requests.php", { type: post.getAttribute("id"),
+            goodId: parseInt(post.getAttribute("goodId")) });
+    });
 }
 
-function post_request(e, url, ...args) {
+function post_request(e, url, data) {
     $.ajax({
         url: url,
         method: "POST",
-        data: { type: args[0], goodId: goodId, imageIds: args[1]},
+        data: data,
+        success: () => {
+            location.reload();
+        }
     })
+    return true;
 }
 
 
@@ -131,7 +60,6 @@ function request_returns(method, goodId)
 span.onclick = function()
 {
     modal.style.display = "none";
-    clear_all()
 }
 
 
@@ -140,17 +68,5 @@ window.onclick = function(event)
     if (event.target === modal)
     {
         modal.style.display = "none";
-        clear_all()
     }
-}
-
-function clear_all()
-{
-    title.value = "";
-    description.innerHTML = "";
-    let imgs = divPhoto.querySelectorAll("img");
-    for (const img of imgs) {
-        divPhoto.removeChild(img);
-    }
-    actionForm.removeAttribute("action");
 }
