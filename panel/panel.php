@@ -14,11 +14,6 @@
     $stmt = $conn->prepare($sql_goods);
     $stmt->execute();
     $result_good = $stmt->fetchAll();
-
-//    $sql = "select * from photo_table group by goodId;";
-//    $stmt = $conn->prepare($sql);
-//    $stmt->execute();
-//    $result_photo = $stmt->fetchAll();
 ?>
 
 <!doctype html>

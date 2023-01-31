@@ -12,12 +12,6 @@
         $stmt->bindValue("id", $_GET["id"]);
         $stmt->execute();
         $good_result = $stmt->fetchAll();
-
-//        $sql = "select * from photo_table where goodId = :id";
-//        $stmt = $conn->prepare($sql);
-//        $stmt->bindValue("id", $_GET["id"]);
-//        $stmt->execute();
-//        $photo_result = $stmt->fetchAll();
     }
 ?>
 

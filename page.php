@@ -37,10 +37,9 @@
             </div>
             <div class="main_cards">
                 <?php foreach ($result_good as $key => $value) { ?>
-                <div class="card Cards">
-
-                    <img src="<?php echo $value["path_to_photo"]; ?>" alt="">
-                </div>
+                    <div class="card Cards">
+                        <img src="<?php echo $value["path_to_photo"]; ?>" alt="">
+                    </div>
                 <?php } ?>
             </div>
 
