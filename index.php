@@ -36,21 +36,35 @@
         <div class="cards">
             <?php foreach($res_goods as $key => $value) { ?>
                 <a class="card shadow title-photo" href="./page.php?postId=<?php echo $value["goodId"]; ?>">
-                    <div class="">
-                        <img src="<?php echo $value["path_to_photo"]; ?>" alt="">
-                        <h1>text</h1>
+                    
+                    <img src="<?php echo $value["path_to_photo"]; ?>" alt="">
+                    <div class="title_div">
+                        <p><?php echo $value["title"]; ?></p>
                     </div>
+                    
                 </a>
             <?php } ?>
         </div>
 
         <div class="footer">
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <a href="#">Телеграм</a>
+                        <a href="#">WhatsApp</a>
+                        <a href="#">Vk</a>
+                    </div>
+                </div>
+            </div>
             <h1>Хочу так же!</h1>
             <p class="text">Для начала запишитесь на консультацию</p>
-            <button>Звонок</button>
-            <div class="footer_contact">
-                <p>THE БАЛКОНЫ</p>
-                <div class="icon"><img class="shadow" src="/call.png" alt="" srcset=""></div>
+            <div class="button_lib">
+                <button id="myBtn">Звонок</button>
+
+                <button>Хочу дешевле</button>
             </div>
         </div>
         <script src="./scripts/jquery-3.6.3.js"></script>
