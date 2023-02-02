@@ -9,6 +9,10 @@
     $stmt->bindValue(":goodId", $_REQUEST["postId"]);
     $stmt->execute();
     $result_good = $stmt->fetchAll();
+
+    if ($result_good[0]["is_visible"] == 0) {
+        header("Location: ./index.php"); exit;
+    }
 ?>
 
 <!doctype html>

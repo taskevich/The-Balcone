@@ -58,6 +58,9 @@ body {
 .card{
     opacity: 1;
     width: 100%;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
 }
 .card:hover{
     /*opacity: 0;*/
@@ -76,6 +79,7 @@ body {
     margin: auto;
     width: 100%;
     object-fit: cover;
+
 }
 
 .Cards img {
@@ -147,8 +151,6 @@ body {
 }
 .Cards {
     width: 100%;
-
-    margin-bottom: 20px;
 }
 .text_main p {
     color: #000000;
