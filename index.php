@@ -35,7 +35,12 @@
 
         <div class="cards">
             <?php foreach($res_goods as $key => $value) { ?>
-                <a class="card shadow" href="./page.php?postId=<?php echo $value["goodId"]; ?>"><img src="<?php echo $value["path_to_photo"]; ?>" alt=""></a>
+                <a class="card shadow title-photo" href="./page.php?postId=<?php echo $value["goodId"]; ?>">
+                    <div class="">
+                        <img src="<?php echo $value["path_to_photo"]; ?>" alt="">
+                        <h1>text</h1>
+                    </div>
+                </a>
             <?php } ?>
         </div>
 
@@ -48,5 +53,7 @@
                 <div class="icon"><img class="shadow" src="/call.png" alt="" srcset=""></div>
             </div>
         </div>
+        <script src="./scripts/jquery-3.6.3.js"></script>
+        <script src="./scripts/scripts.js"></script>
     </body>
 </html>
