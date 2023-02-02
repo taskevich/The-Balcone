@@ -11,14 +11,14 @@
 
         if ($title && $description) {
             try {
+                $description = explode("-", $description);
+
                 $sql = "update good_table set title = :title, description = :description where id = :id;";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindValue(":title", $title);
                 $stmt->bindValue(":description", $description);
                 $stmt->bindValue(":id", $id);
                 $stmt->execute();
-
-                var_dump($_FILES);
 
                 $countfiles = count($_FILES['upImage']['name']);
                 for ($i = 0; $i < $countfiles; $i++) {

@@ -37,7 +37,12 @@
         <div class="main">
             <div class="text_main">
                 <h1><?php echo $result_good[0]["title"]; ?></h1>
-                <p><?php echo $result_good[0]["description"]; ?></p>
+                <?php
+                    $description = explode("-", $result_good[0]["description"]);
+                    foreach ($description as $word) {
+                ?>
+                    <p><?php  echo " - ".$word."\n"; ?></p>
+                <?php } ?>
             </div>
             <div class="main_cards">
                 <?php foreach ($result_good as $key => $value) { ?>
@@ -50,13 +55,27 @@
         </div>
 
         <div class="footer">
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <a href="#">Телеграм</a>
+                        <a href="#">WhatsApp</a>
+                        <a href="#">Vk</a>
+                    </div>
+                </div>
+            </div>
             <h1>Хочу так же!</h1>
             <p class="text">Для начала запишитесь на консультацию</p>
-            <button>Звонок</button>
-            <div class="footer_contact">
-                <p>THE БАЛКОНЫ</p>
-                <div class="icon"><img src="/call.png" alt="" srcset=""></div>
+            <div class="button_lib">
+                <button id="myBtn">Звонок</button>
+
+                <button>Хочу дешевле</button>
             </div>
         </div>
+        <script src="./scripts/jquery-3.6.3.js"></script>
+        <script src="./scripts/scripts.js"></script>
     </body>
 </html>
