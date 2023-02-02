@@ -3,8 +3,10 @@ let span = document.getElementsByClassName("close")[0];
 let btns = document.querySelectorAll("#myBtn");
 let hidePost = document.querySelectorAll("#hidePost");
 let showPost = document.querySelectorAll("#showPost");
+let deletePost = document.querySelectorAll("#deletePost");
 
 let status = null;
+
 
 open_modal();
 function open_modal() {
@@ -13,6 +15,13 @@ function open_modal() {
             modal.style.display = "block";
         });
     }
+}
+
+for (const post of deletePost) {
+    post.addEventListener("click", (e) => {
+        post_request(e, "../php_scripts/requests.php", { type: post.getAttribute("id"),
+            goodId: post.getAttribute("goodId") })
+    });
 }
 
 for (const post of hidePost) {

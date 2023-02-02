@@ -21,34 +21,46 @@
         print(json_encode($output));
     }
 
-    if($_POST["type"] == "showImage") {
-        for ($i = 0; $i < count($_POST["imageIds"]); ++$i) {
-            $sql = "update photo_table set status = 1 where id = :id;";
+    switch ($_POST["type"]) {
+        case "showImage":
+            for ($i = 0; $i < count($_POST["imageIds"]); ++$i) {
+                $sql = "update photo_table set status = 1 where id = :id;";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(":id", $_POST["imageIds"][$i]);
+                $stmt->execute();
+            }
+            break;
+        case "hideImage":
+            for ($i = 0; $i < count($_POST["imageIds"]); ++$i) {
+                $sql = "update photo_table set status = 0 where id = :id;";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(":id", $_POST["imageIds"][$i]);
+                $stmt->execute();
+            }
+            break;
+        case "hidePost":
+            $sql = "update good_table set is_visible = 0 where id = :id;";
             $stmt = $conn->prepare($sql);
-            $stmt->bindValue(":id", $_POST["imageIds"][$i]);
+            $stmt->bindValue(":id", $_POST["goodId"]);
             $stmt->execute();
-        }
-    }
-
-    if ($_POST["type"] == "hideImage") {
-        for ($i = 0; $i < count($_POST["imageIds"]); ++$i) {
-            $sql = "update photo_table set status = 0 where id = :id;";
+            break;
+        case "showPost":
+            $sql = "update good_table set is_visible = 1 where id = :id;";
             $stmt = $conn->prepare($sql);
-            $stmt->bindValue(":id", $_POST["imageIds"][$i]);
+            $stmt->bindValue(":id", $_POST["goodId"]);
             $stmt->execute();
-        }
-    }
+            break;
+        case "deletePost":
+            $sql = "delete from photo_table where goodId = :id;";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(":id", $_POST["goodId"]);
+            $stmt->execute();
 
-    if ($_POST["type"] == "hidePost") {
-        $sql = "update good_table set is_visible = 0 where id = :id;";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindValue(":id", $_POST["goodId"]);
-        $stmt->execute();
-    }
-
-    if ($_POST["type"] == "showPost") {
-        $sql = "update good_table set is_visible = 1 where id = :id;";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindValue(":id", $_POST["goodId"]);
-        $stmt->execute();
+            $sql = "delete from good_table where id = :id;";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(":id", $_POST["goodId"]);
+            $stmt->execute();
+            break;
+        default:
+            break;
     }

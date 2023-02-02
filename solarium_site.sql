@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 27 2023 г., 05:35
+-- Время создания: Фев 01 2023 г., 09:39
 -- Версия сервера: 5.6.51
--- Версия PHP: 7.4.30
+-- Версия PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,7 +38,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `login`, `passwd`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+(3, '', ''),
+(4, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
@@ -48,18 +49,17 @@ INSERT INTO `admin` (`id`, `login`, `passwd`) VALUES
 
 CREATE TABLE `good_table` (
   `id` int(11) NOT NULL,
-  `title` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
-  `slug_url` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+  `is_visible` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `good_table`
 --
 
-INSERT INTO `good_table` (`id`, `title`, `description`, `slug_url`) VALUES
-(5, 'Austronaut', 'Austronaut', 'Austronaut'),
-(6, 'Rooms', 'Rooms', 'Rooms');
+INSERT INTO `good_table` (`id`, `title`, `description`, `is_visible`) VALUES
+(4, 'Фото154', 'reyrteyhtfrhgfj/////////////', 1);
 
 -- --------------------------------------------------------
 
@@ -70,18 +70,18 @@ INSERT INTO `good_table` (`id`, `title`, `description`, `slug_url`) VALUES
 CREATE TABLE `photo_table` (
   `id` int(11) NOT NULL,
   `goodId` int(11) DEFAULT NULL,
-  `path_to_photo` text COLLATE utf8mb4_unicode_ci
+  `path_to_photo` text COLLATE utf8mb4_unicode_ci,
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `photo_table`
 --
 
-INSERT INTO `photo_table` (`id`, `goodId`, `path_to_photo`) VALUES
-(4, 5, '../resources/TCZotpise-I.jpg'),
-(5, 5, '../resources/_Sxrk2Srvt8.jpg'),
-(6, 6, '../resources/Без названия (5).jpg'),
-(7, 6, '../resources/d87e54bf-1203-482e-8539-6a4ba27e0f78.jpg');
+INSERT INTO `photo_table` (`id`, `goodId`, `path_to_photo`, `status`) VALUES
+(5, 4, '../resources/d87e54bf-1203-482e-8539-6a4ba27e0f78.jpg', 1),
+(6, 4, '../resources/d609f70f-2e59-417d-b57c-c8d1319a8b1e.jpg', 1),
+(7, 4, '../resources/635fe3cded9528398688f13c_2afe3f11.png', 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -97,8 +97,7 @@ ALTER TABLE `admin`
 -- Индексы таблицы `good_table`
 --
 ALTER TABLE `good_table`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `slug_url` (`slug_url`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `photo_table`
@@ -115,13 +114,13 @@ ALTER TABLE `photo_table`
 -- AUTO_INCREMENT для таблицы `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `good_table`
 --
 ALTER TABLE `good_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `photo_table`

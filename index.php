@@ -45,7 +45,7 @@
             <button>Звонок</button>
             <div class="footer_contact">
                 <p>THE БАЛКОНЫ</p>
-                <div class="icon"><img src="/call.png" alt="" srcset=""></div>
+                <div class="icon"><img class="shadow" src="/call.png" alt="" srcset=""></div>
             </div>
         </div>
     </body>

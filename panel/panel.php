@@ -14,11 +14,6 @@
     $stmt = $conn->prepare($sql_goods);
     $stmt->execute();
     $result_good = $stmt->fetchAll();
-
-//    $sql = "select * from photo_table group by goodId;";
-//    $stmt = $conn->prepare($sql);
-//    $stmt->execute();
-//    $result_photo = $stmt->fetchAll();
 ?>
 
 <!doctype html>
@@ -81,6 +76,7 @@
                     <button id="showPost" goodId="<?php echo $v["goodId"];?>">Показать пост</button>
                 <?php } ?>
                 <a href="./detail.php?id=<?php echo $v["goodId"];?>">Редактировать пост</a>
+                <button id="deletePost" goodId="<?php echo $v["goodId"];?>">&times;</button>
             </div>
         <?php } ?>
 

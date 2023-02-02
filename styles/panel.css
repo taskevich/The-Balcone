@@ -6,6 +6,7 @@
 }
 body {
     background-color: #2B3648;
+
 }
 
 textarea{
@@ -60,7 +61,7 @@ input::file-selector-button{
 }
 
 .posts {
-    display: block;
+    display: flex;
     margin: 50px auto;
     width: 81%;
     height: 100%;
@@ -83,6 +84,11 @@ input::file-selector-button{
     background-color: #212936;
     color: #AFBDD1;
 }
+
+/*.post button {*/
+/*    width: 600px;*/
+/*    height: 30px;*/
+/*}*/
 
 .post img {
     width: 200px;
@@ -200,8 +206,61 @@ input::file-selector-button{
     display: flex;
     justify-content: space-between;
 }
+p {
+    color: #8997B1;
+}
 
+.container {
+    width: 50%;
+    background-color: #212936;
+    margin-top: 20px;
+}
+.wrapper {
+    display: flex;
+    justify-content: center;
 
+}
+.title {
+    margin: 20px;
+}
+.title input {
+    width: 100%;
+    height: 42px;
+}
+.description {
+    margin: 20px;
+
+}
+.button {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.button input {
+    height: 274%;
+}
+
+.image {
+    margin: 20px;
+
+}
+.image_button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.image_grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(auto-fit, 1fr);
+    grid-gap: 20px;
+    justify-items: center;
+    align-items: center;
+}
+.image_grid img {
+    width: 100%;
+    height: auto;
+}
 
 .selected_photo {
     border: 2px solid green;

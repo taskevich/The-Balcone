@@ -1,6 +1,6 @@
 let hideImage = document.getElementById("hideImage");
 let showImage = document.getElementById("showImage");
-let divPhoto = document.getElementById("photos");
+let divPhoto = document.getElementById("image_grid");
 
 //let goodId = parseInt ((new URLSearchParams(window.location.search)).get("id"));
 let onEditVisibility = []

@@ -54,14 +54,13 @@ body {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(auto-fit, 1fr);
 
-    padding-bottom: 20px;
 }
 .card{
     opacity: 1;
     width: 100%;
 }
 .card:hover{
-    opacity: 0;
+    /*opacity: 0;*/
 }
 @keyframes right{
     0% {
@@ -77,8 +76,8 @@ body {
     margin: auto;
     width: 100%;
     object-fit: cover;
-
 }
+
 .Cards img {
     display: flex;
     margin: auto;
@@ -91,7 +90,7 @@ body {
     background: linear-gradient(180deg, #464646 0%, #111110 100%);
     text-align: center;
     padding: 120px 0 0 0;
-    margin-top: 30px;
+    /*margin-top: 30px;*/
     position: relative;
     /* overflow: hidden; */
 }
@@ -185,4 +184,26 @@ body {
 }
 .ghost {
     padding-left: 40px;
+}
+
+.shadow {
+    display: inline-block;
+    position: relative;
+    -moz-box-shadow: rgba(0, 0, 0, 0.8) 3px 3px 10px inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.8) 3px 3px 10px inset;
+    box-shadow: rgba(0, 0, 0, 0.8) 3px 3px 10px inset;
+    -webkit-transition: box-shadow 0.2s ease-in;
+    -moz-transition: box-shadow 0.2s ease-in;
+    transition: box-shadow 0.2s ease-in;
+}
+.shadow:hover {
+    -moz-box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
+    box-shadow: rgba(0, 0, 0, 0.8) 5px 5px 55px inset;
+}
+.shadow img {
+    max-width: 100%;
+    position: relative;
+    z-index: -1;
+    display: block; /* ADDED */
 }
